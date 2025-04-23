@@ -1,9 +1,9 @@
-import React from 'react'
+import SideBarHeader from './SideBarHeader'
 
 const SideBar = () => {
   return (
-    <aside>
-      <h2>SideBar</h2>
+    <aside className='w-1/5 p-3'>
+      <SideBarHeader />
     </aside>
   )
 }
