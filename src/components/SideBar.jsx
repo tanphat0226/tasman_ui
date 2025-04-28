@@ -10,7 +10,7 @@ const SideBar = () => {
     <aside
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className='w-1/6 p-3 bg-gray-50 min-h-full'
+      className='w-1/5 p-3 bg-gray-50 min-h-full'
     >
       <SideBarHeader />
       <SideBarMenu />

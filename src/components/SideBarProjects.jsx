@@ -3,6 +3,7 @@ import { HiOutlineFolderPlus } from 'react-icons/hi2'
 import { useState } from 'react'
 import ProjectDropdown from './ProjectDropdown'
 import { Link } from 'react-router'
+import ButtonIcon from './ButtonIcon'
 
 const SideBarProjects = ({ isSiderBarHover }) => {
   const [isHovered, setIsHovered] = useState(false)
@@ -25,23 +26,20 @@ const SideBarProjects = ({ isSiderBarHover }) => {
         <p className='font-semibold'>My Projects</p>
         <div className='flex items-center justify-between gap-1'>
           {isHovered && (
-            <span className='hover:bg-gray-100 p-1 rounded-md'>
+            <ButtonIcon className='hover:bg-gray-100 p-1 rounded-md'>
               <HiOutlineFolderPlus />
-            </span>
+            </ButtonIcon>
           )}
 
           {isSiderBarHover && (
-            <span
-              className='hover:bg-gray-100 p-1 rounded-md transition-transform duration-300'
-              title='Open Projects'
-            >
+            <ButtonIcon>
               <HiChevronRight
                 className={`transform transition-transform duration-300 ${
                   isOpen ? 'rotate-90' : ''
                 }`}
                 onClick={(e) => handleOpenDropdown(e)}
               />
-            </span>
+            </ButtonIcon>
           )}
         </div>
       </Link>
