@@ -1,16 +1,10 @@
-import Checkbox from './Checkbox'
+import Checkbox from '../../components/Checkbox'
 import { LuPenLine } from 'react-icons/lu'
 import { HiOutlineDotsHorizontal } from 'react-icons/hi'
-import ButtonIcon from './ButtonIcon'
+import ButtonIcon from '../../components/ButtonIcon'
 
-const TaskItem = () => {
-  const tasks = [
-    { id: 1, name: 'Task 1', dueDate: 'Tomorrow' },
-    { id: 2, name: 'Task 2', dueDate: 'Next Week' },
-    { id: 3, name: 'Task 3', dueDate: 'Next Month' }
-  ]
-
-  return tasks.map((task) => (
+const TaskItem = ({ task }) => {
+  return (
     <li
       key={task.id}
       className='flex items-center justify-between p-3 bg-white shadow-sm rounded-md mb-2 cursor-pointer'
@@ -28,7 +22,7 @@ const TaskItem = () => {
         </ButtonIcon>
       </div>
     </li>
-  ))
+  )
 }
 
 export default TaskItem

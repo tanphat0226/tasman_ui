@@ -1,4 +1,5 @@
-import TasksList from '../components/TasksList'
+import TasksList from '../features/tasks/TasksList'
+
 const TodayPage = () => {
   return (
     <div className='m-8 grow shrink '>
