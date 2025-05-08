@@ -1,12 +1,12 @@
 import { RiAddLargeFill } from 'react-icons/ri'
 import TaskItem from './TaskItem'
 import { useState } from 'react'
-import AddTaskForm from './AddTaskForm'
+import TaskForm from './TaskForm'
 
 const task = [
-  { id: 1, name: 'Task 1', dueDate: 'Tomorrow' },
-  { id: 2, name: 'Task 2', dueDate: 'Next Week' },
-  { id: 3, name: 'Task 3', dueDate: 'Next Month' }
+  { id: 1, title: 'Task 1', dueDate: 'Tomorrow', completed: false },
+  { id: 2, title: 'Task 2', dueDate: 'Next Week', completed: false },
+  { id: 3, title: 'Task 3', dueDate: 'Next Month', completed: true }
 ]
 
 const TasksList = () => {
@@ -17,11 +17,17 @@ const TasksList = () => {
     setTasks((prevTasks) => [...prevTasks, task])
   }
 
+  const handleEditTask = (task) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((prevTask) => (prevTask.id === task.id ? { ...prevTask, ...task } : prevTask))
+    )
+  }
+
   return (
     <>
       <ul className='mt-4'>
         {tasks.map((task) => (
-          <TaskItem key={task.id} task={task} />
+          <TaskItem key={task.id} task={task} onEditTask={handleEditTask} />
         ))}
       </ul>
 
@@ -37,7 +43,7 @@ const TasksList = () => {
             <span className='text-gray-500 text-sm group-hover:text-emerald-500'>Add Task</span>
           </button>
         ) : (
-          <AddTaskForm onClose={() => setOpenAddTask(false)} onAdd={handleAddTask} />
+          <TaskForm onClose={() => setOpenAddTask(false)} onAdd={handleAddTask} />
         )}
       </div>
     </>

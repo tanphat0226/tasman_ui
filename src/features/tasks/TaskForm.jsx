@@ -1,16 +1,26 @@
 import React from 'react'
+import { useEffect } from 'react'
 import { useState } from 'react'
 
-const AddTaskForm = ({ onClose, onAdd }) => {
+const TaskForm = ({ mode, onClose, onAdd, onEdit, taskData }) => {
   const [title, setTitle] = useState('')
+
+  useEffect(() => {
+    if (mode === 'edit') {
+      setTitle(taskData.title)
+    }
+  }, [mode, taskData])
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(title)
-    onAdd({ id: Date.now(), name: title, dueDate: 'Tomorrow' })
+
+    if (mode === 'edit') {
+      onEdit({ ...taskData, title })
+    } else {
+      onAdd({ id: Date.now(), title })
+    }
 
     onClose()
-
     setTitle('')
   }
 
@@ -18,6 +28,7 @@ const AddTaskForm = ({ onClose, onAdd }) => {
     <form onSubmit={handleSubmit} className='border border-gray-300 rounded-lg shadow-sm bg-white'>
       <div className='p-3'>
         <input
+          autoFocus
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           type='text'
@@ -35,14 +46,17 @@ const AddTaskForm = ({ onClose, onAdd }) => {
           Cancel
         </button>
         <button
-          className='p-2 bg-emerald-500 text-white rounded-sm hover:bg-emerald-600'
+          className={`p-2 bg-emerald-500 text-white rounded-sm hover:bg-emerald-600 ${
+            !title.trim() ? 'cursor-not-allowed opacity-50 pointer-events-none' : 'cursor-pointer'
+          }`}
           type='submit'
+          disabled={!title.trim() ? true : false}
         >
-          Add Task
+          {mode === 'edit' ? 'Save' : 'Add Task'}
         </button>
       </div>
     </form>
   )
 }
 
-export default AddTaskForm
+export default TaskForm
