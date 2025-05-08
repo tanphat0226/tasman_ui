@@ -23,11 +23,24 @@ const TasksList = () => {
     )
   }
 
+  const handleComplete = (task) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((prevTask) =>
+        prevTask.id === task.id ? { ...prevTask, completed: !task.completed } : prevTask
+      )
+    )
+  }
+
   return (
     <>
       <ul className='mt-4'>
         {tasks.map((task) => (
-          <TaskItem key={task.id} task={task} onEditTask={handleEditTask} />
+          <TaskItem
+            key={task.id}
+            task={task}
+            onEditTask={handleEditTask}
+            onComplete={handleComplete}
+          />
         ))}
       </ul>
 

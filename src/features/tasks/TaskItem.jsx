@@ -5,7 +5,7 @@ import ButtonIcon from '../../components/ButtonIcon'
 import Checkbox from '../../components/Checkbox'
 import TaskForm from './TaskForm'
 
-const TaskItem = ({ task, onEditTask }) => {
+const TaskItem = ({ task, onEditTask, onComplete }) => {
   const [editMode, setEditMode] = useState(false)
 
   return !editMode ? (
@@ -14,7 +14,7 @@ const TaskItem = ({ task, onEditTask }) => {
       className='flex items-center justify-between p-3 bg-white shadow-sm rounded-md mb-2 cursor-pointer'
     >
       <div className='flex items-center'>
-        <Checkbox isCompleted={task.completed} />
+        <Checkbox task={task} onComplete={onComplete} />
         <span className={`text-gray-500 ml-1.5 ${task.completed ? 'line-through opacity-80' : ''}`}>
           {task.title}
         </span>
